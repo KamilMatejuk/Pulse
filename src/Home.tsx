@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import Blob from './Blob';
 import { FaCirclePause, FaCirclePlay } from 'react-icons/fa6';
+import Info from './Info';
 
 
 export default function Home() {
@@ -38,9 +39,7 @@ export default function Home() {
         {isPlaying ? <FaCirclePause size={50} /> : <FaCirclePlay size={50} />}
       </button>
       {/* info */}
-      <div className="flex flex-col items-center justify-center border border-black/5 text-black/40 bg-black/5 rounded-lg px-10 py-2 ">
-        Select set to start playing
-      </div >
+      <Info text="Select set to start playing" />
     </div >
   );
 };
