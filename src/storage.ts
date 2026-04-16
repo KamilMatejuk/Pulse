@@ -33,33 +33,4 @@ export function loadSets(): Set[] {
 
 export function saveSets(sets: Set[]): void {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(sets));
-    // Notify other components of the update
-    if (typeof window !== 'undefined') {
-        window.location.reload();
-    }
-}
-
-export function getSetById(id: string): Set | undefined {
-    return loadSets().find(s => s.id === id);
-}
-
-export function updateSet(updated: Set): void {
-    const sets = loadSets();
-    const index = sets.findIndex(s => s.id === updated.id);
-    if (index === -1) {
-        console.warn('Set not found for update:', updated.id);
-        return;
-    }
-    sets[index] = updated;
-    saveSets(sets);
-}
-
-export function deleteSet(id: string): void {
-    const sets = loadSets();
-    const filtered = sets.filter(s => s.id !== id);
-    if (filtered.length === sets.length) {
-        console.warn('Set not found for delete:', id);
-        return;
-    }
-    saveSets(filtered);
 }
