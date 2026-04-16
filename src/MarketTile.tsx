@@ -4,13 +4,20 @@ import { IoCopyOutline } from "react-icons/io5";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useContext } from "react";
 import { SetsContext } from "./contexts/SetsContext";
+import { SelectedContext } from "./contexts/SelectedContext";
+import { twMerge } from "tailwind-merge";
 
 export default function MarketTile({ item }: { item: Set }) {
   const { updateSet, deleteSet } = useContext(SetsContext)
+  const { selected, setSelected } = useContext(SelectedContext)
   return (
     <div
-      className="relative w-full bg-cover bg-center rounded-xl shadow-xl p-2"
+      className={twMerge(
+        "relative w-full bg-cover bg-center rounded-xl shadow-xl p-2",
+        selected?.id == item.id && "border-3 border-pulse-accent"
+      )}
       style={{ backgroundImage: `url(${item.bg})` }}
+      onClick={() => setSelected(selected?.id == item.id ? undefined : item)}
     >
       <div className="absolute inset-0 rounded-lg bg-[linear-gradient(45deg,_white_40%,_transparent_60%)]" />
       <div className="relative z-10">

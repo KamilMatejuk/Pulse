@@ -1,12 +1,15 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import Blob from './Blob';
 import { FaCirclePause, FaCirclePlay } from 'react-icons/fa6';
 import Info from './Info';
+import { SelectedContext } from './contexts/SelectedContext';
 
 
 export default function Home() {
   const [isPlaying, setIsPlaying] = useState(false);
+  const { selected } = useContext(SelectedContext);
+
 
   const togglePlay = () => {
     setIsPlaying(prev => !prev);
@@ -29,17 +32,19 @@ export default function Home() {
       {/* play / pause */}
       <button
         onClick={togglePlay}
-        disabled={false} // if no plan set
+        disabled={!selected} // if no plan set
         className={`
-            flex items-center justify-center rounded-full text-pulse-accent p-3
+            flex items-center justify-center rounded-full text-pulse-accent p-3 mb-10
             hover:scale-[1.1] transition-all cursor-pointer
             disabled:text-gray-300 disabled:cursor-not-allowed disabled:transform-none
           `}
       >
-        {isPlaying ? <FaCirclePause size={50} /> : <FaCirclePlay size={50} />}
+        {isPlaying ? <FaCirclePause size={75} /> : <FaCirclePlay size={75} />}
       </button>
       {/* info */}
-      <Info text="Select set to start playing" />
+      {!selected &&
+        <Info text="Select set to start playing" />
+      }
     </div >
   );
 };
