@@ -1,8 +1,8 @@
 import { FaCheck } from "react-icons/fa6";
-import MarketTile from "./MarketTile";
-import Info from "./Info";
+import MarketTile from "../MarketTile";
+import Info from "../Info";
 import { useContext } from "react";
-import { SetsContext } from "./contexts/SetsContext";
+import { SetsContext } from "../contexts/SetsContext";
 
 export default function Marketplace() {
   const { sets } = useContext(SetsContext);

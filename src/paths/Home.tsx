@@ -1,9 +1,9 @@
 import { useContext, useState } from 'react';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
-import Blob from './Blob';
+import Blob from '../Blob';
 import { FaCirclePause, FaCirclePlay } from 'react-icons/fa6';
-import Info from './Info';
-import { SelectedContext } from './contexts/SelectedContext';
+import Info from '../Info';
+import { SelectedContext } from '../contexts/SelectedContext';
 
 
 export default function Home() {
