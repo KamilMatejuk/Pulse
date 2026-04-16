@@ -1,12 +1,16 @@
 /** @type {import('tailwindcss').Config} */
-export default {
-  // Crucial: Tell Tailwind where to look for class names in your React/TSX files
+module.exports = {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        'pulse-accent': '#7b2cb9',
+        'pulse-bg': '#f7f7f5',
+      },
+    },
   },
   plugins: [],
 }
