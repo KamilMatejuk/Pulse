@@ -1,0 +1,83 @@
+[
+  {
+    "id": "desk-work",
+    "name": "Desk Work",
+    "phrases": [
+      "Stay focused",
+      "Drink water",
+      "Take a quick break",
+      "Look outside",
+      "Sit straight",
+      "Relax your shoulders"
+    ],
+    "interval": {
+      "min": 300,
+      "max": 600
+    },
+    "randomize": true,
+    "forceFullUseBeforeLoop": false,
+    "liked": true,
+    "bg": "desk-work.jpg"
+  },
+  {
+    "id": "breathing",
+    "name": "Breathing",
+    "phrases": [
+      "Inhale",
+      "Exhale"
+    ],
+    "interval": {
+      "min": 10,
+      "max": 20
+    },
+    "randomize": false,
+    "forceFullUseBeforeLoop": true,
+    "liked": false,
+    "bg": "breathing.jpg"
+  },
+  {
+    "id": "tabata",
+    "name": "Tabata",
+    "phrases": [
+      "Jumping jacks",
+      "High knees",
+      "Burpees",
+      "Mountain climbers"
+    ],
+    "interval": {
+      "min": 30,
+      "max": 60
+    },
+    "randomize": true,
+    "forceFullUseBeforeLoop": false,
+    "liked": false,
+    "bg": "tabata.jpg"
+  },
+  {
+    "id": "dance",
+    "name": "Dance",
+    "phrases": [
+      "Go low",
+      "Rise up",
+      "Jump",
+      "Travel across space",
+      "Spin",
+      "Reverse",
+      "Sharp turn",
+      "Circle",
+      "Freeze",
+      "Slow down",
+      "Speed up",
+      "Only lower body",
+      "Only upper body"
+    ],
+    "interval": {
+      "min": 15,
+      "max": 30
+    },
+    "randomize": true,
+    "forceFullUseBeforeLoop": false,
+    "liked": false,
+    "bg": "dance.jpg"
+  }
+]
