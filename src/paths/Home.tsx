@@ -4,6 +4,7 @@ import Blob from '../Blob';
 import { FaCirclePause, FaCirclePlay } from 'react-icons/fa6';
 import Info from '../Info';
 import { SelectedContext } from '../contexts/SelectedContext';
+import { formatInterval } from '../storage';
 
 
 export default function Home() {
@@ -42,8 +43,10 @@ export default function Home() {
         {isPlaying ? <FaCirclePause size={75} /> : <FaCirclePlay size={75} />}
       </button>
       {/* info */}
-      {!selected &&
-        <Info text="Select set to start playing" />
+      {selected
+        ? <Info text={`Selected "${selected.name}"
+        (${selected.phrases.length} different phrases every ${formatInterval(selected.interval.min, selected.interval.max)})`} />
+        : <Info text="Select set to start playing" />
       }
     </div >
   );

@@ -1,3 +1,5 @@
+import { Fragment } from "react/jsx-runtime";
+
 export default function Info({ text, fullWidth }: { text: string, fullWidth?: boolean }) {
   return (
     <div className={`
@@ -6,7 +8,11 @@ export default function Info({ text, fullWidth }: { text: string, fullWidth?: bo
       border border-black/5 text-black/40 bg-black/5
       rounded-lg p-2
     `}>
-      {text}
+      {text.split("\n").map((t, i) => (
+        <Fragment key={i}>
+          {t}<br />
+        </Fragment>
+      ))}
     </div >
   );
 }

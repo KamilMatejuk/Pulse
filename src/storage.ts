@@ -21,7 +21,9 @@ export function formatInterval(min: number, max?: number) {
                 ? `${v / 60}m`
                 : `${(v / 60).toFixed(1)}m`
     }
-    return _formatTime(min) + (max == undefined ? "" : " - " + _formatTime(max));
+    if (max == undefined) return _formatTime(min)
+    if (min == max) return _formatTime(min)
+    return `${_formatTime(min)} - ${_formatTime(max)}`;
 }
 
 // User local sets are stored on the device
