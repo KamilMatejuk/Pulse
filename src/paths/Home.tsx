@@ -34,8 +34,12 @@ export default function Home() {
           ? Math.floor(Math.random() * phrasesToUse.size)
           : 0;
         const phrase = new Array(...phrasesToUse)[phraseIndex];
+        // speak
+        speechSynthesis.speak(new SpeechSynthesisUtterance(`Now ${phrase}`));
+        // show
         setPhrase(phrase);
         setTimeout(() => setPhrase(null), 3 * 1000);
+        // track used
         setUsedPhrases((prev) => prev.size == selected.phrases.length - 1 ? new Set() : new Set([...prev, phrase]));
         if (isPlaying) schedule();
       }, delay * 1000);
@@ -52,6 +56,7 @@ export default function Home() {
 
 
   const togglePlay = () => {
+    if (!isPlaying) speechSynthesis.speak(new SpeechSynthesisUtterance("Start"));
     setIsPlaying(prev => !prev);
   };
 
@@ -68,10 +73,10 @@ export default function Home() {
       {/* blob */}
       <div className="flex-1 flex flex-col items-center justify-center relative">
         <Blob style={{ opacity: timeLeft !== null ? 0.8 : 1.0, scale: phrase ? 1.5 : 1.0 }} />
-        <div className="absolute top-1/2 text-white">
+        <div className="absolute top-1/2 -translate-y-[25%] text-white">
           {timeLeft && !phrase ? `Next in ${timeLeft > 60 ? Math.floor(timeLeft / 60) + 'm' : ''} ${Math.floor(timeLeft % 60)}s` : ''}
         </div>
-        <div className="absolute top-1/2 text-white text-center w-[80%] font-extrabold text-5xl">
+        <div className="absolute top-1/2 -translate-y-[25%] text-white text-center w-[80%] font-extrabold text-5xl">
           {phrase}
         </div>
       </div>
