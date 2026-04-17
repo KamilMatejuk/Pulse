@@ -22,7 +22,7 @@ const schema = z.object({
 export default function Options() {
   const { sets, addSet, updateSet } = useContext(SetsContext);
 
-  const query = new URLSearchParams(window.location.search);
+  const query = new URLSearchParams(window.location.hash.split('?')[1] ?? '');
   const operation = query.get('operation') || "create";
   const id = query.get('id');
   const currentSet = sets.find(s => s.id == id) || {} as Set;
@@ -136,6 +136,7 @@ export default function Options() {
                 Phrases
                 {values.phrases.map((_, i) => (
                   <TextField
+                    key={i}
                     label={`#${i + 1}`}
                     name={`phrases[${i}]`}
                     value={values.phrases[i]}
