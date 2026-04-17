@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-pulse-bg flex flex-col items-center justify-center gap-10 p-10 relative overflow-hidden font-sans">
       {/* Marketplace */}
-      <a href='marketplace' className="absolute top-4 right-4 text-pulse-accent border border-2 rounded-lg p-2 hover:scale-[1.02] transition-all">
+      <a href='#/marketplace' className="absolute top-4 right-4 text-pulse-accent border border-2 rounded-lg p-2 hover:scale-[1.02] transition-all">
         <AiOutlineAppstoreAdd size={35} />
       </a>
       {/* Header */}

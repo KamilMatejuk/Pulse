@@ -34,7 +34,7 @@ export default function MarketTile({ item }: { item: Set }) {
                   deleteSet(item.id);
                 }}
               />
-              <a href={`options?operation=edit&id=${item.id}`}>
+              <a href={`#/options?operation=edit&id=${item.id}`}>
                 <FaRegEdit
                   size={30}
                   onClick={e => e.stopPropagation()}
@@ -43,7 +43,7 @@ export default function MarketTile({ item }: { item: Set }) {
               </a>
             </>
           )}
-          <a href={`options?operation=copy&id=${item.id}`}>
+          <a href={`#/options?operation=copy&id=${item.id}`}>
             <IoCopyOutline
               size={30}
               onClick={e => e.stopPropagation()}

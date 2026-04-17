@@ -82,7 +82,7 @@ export default function Options() {
               forceFullUseBeforeLoop: values.forceFullUseBeforeLoop,
             })
           }
-          window.location.href = "marketplace";
+          window.location.href = "#/marketplace";
         }}
       >
         {({ errors, values, setFieldValue, handleChange }: FormikProps<typeof formikInitialValues>) => {
