@@ -1,4 +1,4 @@
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect, useRef } from 'react';
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
 import Blob from '../Blob';
 import { FaCirclePause, FaCirclePlay } from 'react-icons/fa6';
@@ -8,8 +8,47 @@ import { formatInterval } from '../storage';
 
 
 export default function Home() {
-  const [isPlaying, setIsPlaying] = useState(false);
   const { selected } = useContext(SelectedContext);
+  const timerRef = useRef<number | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [timeLeft, setTimeLeft] = useState<number | null>(null);
+  const [phrase, setPhrase] = useState<string | null>(null);
+  const [usedPhrases, setUsedPhrases] = useState<Set<string>>(new Set());
+
+  useEffect(() => {
+    const schedule = () => {
+      if (!isPlaying || !selected) {
+        setTimeLeft(null);
+        return;
+      }
+      const min = selected.interval.min;
+      const max = selected.interval.max;
+      const delay = Math.floor(Math.random() * (max - min) + min);
+      setTimeLeft(delay);
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        const phrasesToUse = selected.forceFullUseBeforeLoop
+          ? (new Set(selected.phrases)).difference(usedPhrases)
+          : new Set(selected.phrases);
+        const phraseIndex = selected.randomize
+          ? Math.floor(Math.random() * phrasesToUse.size)
+          : 0;
+        const phrase = new Array(...phrasesToUse)[phraseIndex];
+        setPhrase(phrase);
+        setTimeout(() => setPhrase(null), 3 * 1000);
+        setUsedPhrases((prev) => prev.size == selected.phrases.length - 1 ? new Set() : new Set([...prev, phrase]));
+        if (isPlaying) schedule();
+      }, delay * 1000);
+    };
+    schedule();
+    const countdown = setInterval(() => {
+      setTimeLeft(prev => (prev !== null && prev > 0 ? prev - 1 : 0));
+    }, 1000);
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      clearInterval(countdown);
+    };
+  }, [isPlaying, selected, usedPhrases]);
 
 
   const togglePlay = () => {
@@ -27,8 +66,14 @@ export default function Home() {
         Pulse
       </header>
       {/* blob */}
-      <div className="flex-1 flex flex-col items-center justify-center">
-        <Blob />
+      <div className="flex-1 flex flex-col items-center justify-center relative">
+        <Blob style={{ opacity: timeLeft !== null ? 0.8 : 1.0, scale: phrase ? 1.5 : 1.0 }} />
+        <div className="absolute top-1/2 text-white">
+          {timeLeft && !phrase ? `Next in ${timeLeft > 60 ? Math.floor(timeLeft / 60) + 'm' : ''} ${Math.floor(timeLeft % 60)}s` : ''}
+        </div>
+        <div className="absolute top-1/2 text-white text-center w-[80%] font-extrabold text-5xl">
+          {phrase}
+        </div>
       </div>
       {/* play / pause */}
       <button

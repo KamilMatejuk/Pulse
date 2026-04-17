@@ -1,6 +1,6 @@
 import * as blobs2 from "blobs/v2";
 import { useSpring, animated } from "react-spring";
-import { useEffect, useState } from "react";
+import { useEffect, useState, type SVGProps } from "react";
 
 function getRandomPath() {
     return blobs2.svgPath({
@@ -11,7 +11,7 @@ function getRandomPath() {
     });
 }
 
-export default function Blob() {
+export default function Blob(props: SVGProps<SVGSVGElement>) {
     const [targetPath, setTargetPath] = useState(() => getRandomPath());
     const duration = 2_000;
 
@@ -21,7 +21,7 @@ export default function Blob() {
     }, [targetPath]);
 
     return (
-        <svg viewBox="0 0 500 500" width="100%" className="text-pulse-accent">
+        <svg {...props} viewBox="0 0 500 500" width="100%" className="text-pulse-accent transition duration-500 ease-in-out">
             <defs>
                 <radialGradient id="blobGradient" cx="30%" cy="30%" r="70%">
                     <stop offset="0%" stopColor="currentColor" stopOpacity="0.4" />
