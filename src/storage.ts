@@ -13,6 +13,17 @@ export type Set = {
     bg?: string;
 }
 
+export function formatInterval(min: number, max?: number) {
+    const _formatTime = (v: number) => {
+        return v < 60
+            ? `${v}s`
+            : v % 60 == 0
+                ? `${v / 60}m`
+                : `${(v / 60).toFixed(1)}m`
+    }
+    return _formatTime(min) + (max == undefined ? "" : " - " + _formatTime(max));
+}
+
 // User local sets are stored on the device
 // Global default sets are always loaded from file and cannot be edited/removed.
 export const STORAGE_KEY_SETS = 'pulse-sets';

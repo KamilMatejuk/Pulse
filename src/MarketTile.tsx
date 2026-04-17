@@ -1,11 +1,12 @@
 import { FaHeart, FaRegHeart } from "react-icons/fa6";
-import { type Set } from "./storage";
+import { formatInterval, type Set } from "./storage";
 import { IoCopyOutline } from "react-icons/io5";
 import { AiOutlineDelete } from "react-icons/ai";
 import { useContext } from "react";
 import { SetsContext } from "./contexts/SetsContext";
 import { SelectedContext } from "./contexts/SelectedContext";
 import { twMerge } from "tailwind-merge";
+import { FaRegEdit } from "react-icons/fa";
 
 export default function MarketTile({ item }: { item: Set }) {
   const { updateSet, deleteSet } = useContext(SetsContext)
@@ -23,35 +24,57 @@ export default function MarketTile({ item }: { item: Set }) {
       <div className="relative z-10">
         <div className="absolute top-0 right-0 text-pulse-accent flex gap-2">
           {item.custom && (
-            <AiOutlineDelete
-              size={30}
-              className="bg-white rounded-lg p-1"
-              onClick={() => deleteSet(item.id)}
-            />
+            <>
+              <AiOutlineDelete
+                size={30}
+                className="bg-white rounded-lg p-1"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  if (selected?.id == item.id) setSelected(undefined);
+                  deleteSet(item.id);
+                }}
+              />
+              <a href={`/options?operation=edit&id=${item.id}`}>
+                <FaRegEdit
+                  size={30}
+                  onClick={e => e.stopPropagation()}
+                  className="bg-white rounded-lg p-1"
+                />
+              </a>
+            </>
           )}
-          <IoCopyOutline
-            size={30}
-            className="bg-white rounded-lg p-1"
-          />
+          <a href={`/options?operation=copy&id=${item.id}`}>
+            <IoCopyOutline
+              size={30}
+              onClick={e => e.stopPropagation()}
+              className="bg-white rounded-lg p-1"
+            />
+          </a>
           {item.liked
             ? (
               <FaHeart
                 size={30}
                 className="bg-white rounded-lg p-1"
-                onClick={() => updateSet({ ...item, liked: false })}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateSet({ ...item, liked: false });
+                }}
               />
             ) : (
               <FaRegHeart
                 size={30}
                 className="bg-white rounded-lg p-1"
-                onClick={() => updateSet({ ...item, liked: true })} />
+                onClick={(e) => {
+                  e.stopPropagation();
+                  updateSet({ ...item, liked: true });
+                }} />
             )}
         </div>
         <div className="font-bold text-pulse-accent">
           {item.name}
         </div>
         <div className="text-black/20 text-sm truncate w-1/2">
-          Every {item.interval.min}s-{item.interval.max}s
+          {formatInterval(item.interval.min, item.interval.max)}
         </div>
         <div className="text-black/20 text-sm truncate w-1/2">
           {item.randomize ? "Random" : "Ordered"} / {item.forceFullUseBeforeLoop ? "Full loop" : "Repeating"}

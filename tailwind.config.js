@@ -7,8 +7,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'pulse-accent': '#7b2cb9',
-        'pulse-bg': '#f7f7f5',
+        'pulse-accent': 'var(--color-accent)',
+        'pulse-bg': 'var(--color-bg)',
       },
     },
   },

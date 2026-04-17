@@ -8,7 +8,7 @@ export default function Marketplace() {
   const { sets } = useContext(SetsContext);
 
   return (
-    <div className="min-h-screen bg-pulse-bg flex flex-col items-center gap-4 p-4 relative overflow-hidden font-sans">
+    <div className="min-h-screen bg-pulse-bg flex flex-col items-center gap-4 p-4 relative font-sans">
       {/* Home */}
       <a href='/' className="absolute top-4 right-4 text-pulse-accent border border-2 rounded-lg p-2 hover:scale-[1.02] transition-all">
         <FaCheck size={35} />
@@ -23,9 +23,12 @@ export default function Marketplace() {
       <h1 className="w-full text-md text-pulse-accent border-b border-pulse-accent/50">
         Your Sets
       </h1>
-      <div className="w-full flex flex-col items-center justify-center border border-pulse-accent text-pulse-accent rounded-lg py-2 ">
+      <a
+        href={`/options?operation=create`}
+        className="w-full flex flex-col items-center justify-center border border-pulse-accent text-pulse-accent rounded-lg py-2"
+      >
         Create new set
-      </div >
+      </a>
       {sets.filter(s => s.custom).map((item, index) => (
         <MarketTile item={item} key={index} />
       ))}

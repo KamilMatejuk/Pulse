@@ -6,6 +6,7 @@ import Home from './paths/Home'
 import Marketplace from './paths/Marketplace'
 import { SetsProvider } from './contexts/SetsProvider'
 import { SelectedProvider } from './contexts/SelectedProvider'
+import Options from './paths/Options'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
@@ -15,6 +16,7 @@ createRoot(document.getElementById('root')!).render(
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/marketplace" element={<Marketplace />} />
+            <Route path="/options" element={<Options />} />
           </Routes>
         </BrowserRouter>
       </SelectedProvider>
