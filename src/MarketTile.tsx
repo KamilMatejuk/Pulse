@@ -20,7 +20,7 @@ export default function MarketTile({ item }: { item: Set }) {
       style={{ backgroundImage: `url(${item.bg})` }}
       onClick={() => setSelected(selected?.id == item.id ? undefined : item)}
     >
-      <div className="absolute inset-0 rounded-lg bg-[linear-gradient(45deg,_white_40%,_transparent_60%)]" />
+      <div className="absolute inset-0 rounded-lg bg-[linear-gradient(45deg,_white_40%,_transparent_85%)]" />
       <div className="relative z-10">
         <div className="absolute top-0 right-0 text-pulse-accent flex gap-2">
           {item.custom && (
