@@ -1,7 +1,7 @@
 import './index.css'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
-import { BrowserRouter, Route, Routes } from 'react-router'
+import { HashRouter, Route, Routes } from "react-router-dom";
 import Home from './paths/Home'
 import Marketplace from './paths/Marketplace'
 import { SetsProvider } from './contexts/SetsProvider'
@@ -12,13 +12,13 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <SetsProvider>
       <SelectedProvider>
-        <BrowserRouter basename={import.meta.env.BASE_URL}>
+        <HashRouter basename={import.meta.env.BASE_URL}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/marketplace" element={<Marketplace />} />
             <Route path="/options" element={<Options />} />
           </Routes>
-        </BrowserRouter>
+        </HashRouter>
       </SelectedProvider>
     </SetsProvider>
   </StrictMode>,
