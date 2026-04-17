@@ -10,7 +10,7 @@ export default function Marketplace() {
   return (
     <div className="min-h-screen bg-pulse-bg flex flex-col items-center gap-4 p-4 relative font-sans">
       {/* Home */}
-      <a href='/' className="absolute top-4 right-4 text-pulse-accent border border-2 rounded-lg p-2 hover:scale-[1.02] transition-all">
+      <a href='' className="absolute top-4 right-4 text-pulse-accent border border-2 rounded-lg p-2 hover:scale-[1.02] transition-all">
         <FaCheck size={35} />
       </a>
       {/* Title */}
