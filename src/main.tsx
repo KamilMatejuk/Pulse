@@ -12,7 +12,7 @@ createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <SetsProvider>
       <SelectedProvider>
-        <HashRouter basename={import.meta.env.BASE_URL}>
+        <HashRouter>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/marketplace" element={<Marketplace />} />
