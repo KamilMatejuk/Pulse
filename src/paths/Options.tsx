@@ -193,6 +193,7 @@ export default function Options() {
                     name="forceFullUseBeforeLoop"
                     checked={values.forceFullUseBeforeLoop}
                     onChange={handleChange}
+                    sx={{ '&.Mui-checked': { color: 'var(--color-accent)' } }}
                   />
                   Use all phrases before looping
                 </label>
